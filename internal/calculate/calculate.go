@@ -7,7 +7,7 @@ func CalculateTotal(amount, rate float64, term int) float64 {
 	// Простая формула для расчета суммы с учетом процентов
 	interest := rate / 100
 	total := amount * (1 + (interest * float64(term)))
-	return roundToHundredths(total)
+	return math.Round(total)
 }
 
 // Функция для расчета ежемесячного платежа
@@ -25,9 +25,5 @@ func CalculateMonthlyPayment(amount, rate float64, term int) float64 {
 
 	// Аннуитетная формула
 	payment := amount * (monthlyRate * math.Pow(1+monthlyRate, months)) / (math.Pow(1+monthlyRate, months) - 1)
-	return roundToHundredths(payment)
-}
-
-func roundToHundredths(value float64) float64 {
-	return math.Round(value*100) / 100
+	return math.Round(payment)
 }
